@@ -1,12 +1,14 @@
 const a=Number(prompt('Enter the marks of English out of 50:'));
 const b=Number(prompt('Enter the marks of Maths out of 50:'));
 const c=Number(prompt('Enter the marks of Hindi out of 50:'));
+
         var d=a/50*100;
         var e=b/50*100;
         var f=c/50*100;
+
 var t=(a+b+c)/150*100;
 
-document.write("Total Percentage = " +t+"% <br>"+"<br>");
+document.write("Total Percentage of both three subjects = " +t+"% <br>"+"<br>");
         document.write("English Percentage = " +d+"% <br>");
         document.write("Maths Percentage=  "+e+"% <br>");
         
