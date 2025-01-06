@@ -1,0 +1,129 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #007BFF;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    button {
+        background: #007BFF;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 10px;
+        background: #f1f1f1;
+        border-radius: 5px;
+    }
+
+    .result p {
+        margin: 5px 0;
+    }
+
+</style> 
+</head>
+<body>
+<div class="container">
+    <h1>Arithmetic Operations</h1>
+    <form id="calcForm">
+        <input type="number" id="valueA" placeholder="Enter the value of A" required>
+        <input type="number" id="valueB" placeholder="Enter the value of B" required>
+
+        <select id="operation" required>
+            <option value="">Select an operation</option>
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="%">Modulus (%)</option>
+            <option value="/">Division (/)</option>
+            <option value="All">All Operations</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div class="result" id="result" style="display: none;"></div>
+</div>
+
+<script>
+    const form = document.getElementById('calcForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const a = Number(document.getElementById('valueA').value);
+        const b = Number(document.getElementById('valueB').value);
+        const op = document.getElementById('operation').value;
+
+        let result = '';
+
+        if (op === '+') {
+            result = `<p>Addition: ${a + b}</p>`;
+        } else if (op === '-') {
+            result = `<p>Subtraction: ${a - b}</p>`;
+        } else if (op === '*') {
+            result = `<p>Multiplication: ${a * b}</p>`;
+        } else if (op === '%') {
+            result = `<p>Modulus: ${a % b}</p>`;
+        } else if (op === '/') {
+            if (b !== 0) {
+                result = `<p>Division: ${(a / b).toFixed(2)}</p>`;
+            } else {
+                result = '<p style="color: red;">Error: Division by zero is not allowed.</p>';
+            }
+        } else if (op === 'All') {
+            result = `
+                <p>Addition: ${a + b}</p>
+                <p>Subtraction: ${a - b}</p>
+                <p>Multiplication: ${a * b}</p>
+                <p>Modulus: ${a % b}</p>
+                <p>Division: ${b !== 0 ? (a / b).toFixed(2) : 'Error: Division by zero'}</p>
+            `;
+        } else {
+            result = '<p style="color: red;">Please select a valid operation.</p>';
+        }
+
+        resultDiv.innerHTML = result;
+        resultDiv.style.display = 'block';
+    });
+</script>
+</body> 
+</html>
